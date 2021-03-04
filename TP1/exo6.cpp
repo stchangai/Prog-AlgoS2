@@ -33,7 +33,7 @@ Liste *initialise()
 
 bool est_vide(const Liste* liste)
 {
-    if(liste==NULL){
+    if(liste->premier==NULL){
         return true;
     }   
     return false;
@@ -195,14 +195,12 @@ void pousse_file(Liste* liste, int valeur)
 //int retire_file(Liste* liste)
 int retire_file(Liste* liste)
 {
-    if(liste !=NULL){
-        if(liste->premier !=0){
-            Noeud *first = liste->premier;
-            liste->premier=liste->premier->suivant;
-            return first->donnee;
-        }
+    if(liste->premier !=0){
+        Noeud *first = liste->premier;
+        liste->premier=liste->premier->suivant;
+        return first->donnee;
     }
-        return 0;
+    return 0;
 }
 
 //void pousse_pile(DynaTableau* liste, int valeur)
@@ -298,11 +296,11 @@ int main()
     affiche(file);
     cout << "affichage de la pile : "<<endl;
     affiche(pile);
-    int compteur = 7;
+    int compteur = 10;
+    cout << endl;
     while(!est_vide(file) && compteur > 0)
     {
-        cout << endl;
-        std::cout << retire_file(file) << std::endl;
+        std::cout << retire_file(file) << "compteur = " << compteur << std::endl;
         compteur--;
     }
 
@@ -314,7 +312,7 @@ int main()
     compteur = 10;
     while(!est_vide(pile) && compteur > 0)
     {
-        std::cout << retire_pile(pile) << std::endl;
+        std::cout << retire_pile(pile) << "compteur = " << compteur << std::endl;
         compteur--;
     }
 
